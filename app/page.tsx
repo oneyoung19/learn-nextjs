@@ -1,5 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import RouteInfo from "../components/RouteInfo";
+
+const routes = [
+  {
+    name: "Antd",
+    href: "/antd",
+  },
+  {
+    name: "Grid",
+    href: "/grid",
+  },
+  {
+    name: "Shadcn UI",
+    href: "/shadcn-ui",
+  },
+  {
+    name: "Tailwind",
+    href: "/tailwind",
+  }
+];
 
 export default function Home() {
   return (
@@ -83,20 +103,26 @@ export default function Home() {
           />
           Examples
         </a>
-        <Link
-          href="/tailwind"
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to tailwind →
-        </Link>
+        {
+          routes.map(route => {
+            return (
+              <Link
+                href={route.href}
+                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  aria-hidden
+                  src="/globe.svg"
+                  alt="Globe icon"
+                  width={16}
+                  height={16}
+                />
+                {route.name} →
+              </Link>
+            )
+          })
+        }
       </footer>
     </div>
   );
