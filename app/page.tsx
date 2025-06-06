@@ -1,25 +1,25 @@
-import Image from "next/image";
-import Link from "next/link";
-import RouteInfo from "../components/RouteInfo";
+import Image from 'next/image'
+import Link from 'next/link'
+// import RouteInfo from '../components/RouteInfo'
 
 const routes = [
   {
-    name: "Antd",
-    href: "/antd",
+    name: 'Antd',
+    href: '/antd'
   },
   {
-    name: "Grid",
-    href: "/grid",
+    name: 'Grid',
+    href: '/grid'
   },
   {
-    name: "Shadcn UI",
-    href: "/shadcn-ui",
+    name: 'Shadcn UI',
+    href: '/shadcn-ui'
   },
   {
-    name: "Tailwind",
-    href: "/tailwind",
+    name: 'Tailwind',
+    href: '/tailwind'
   }
-];
+]
 
 export default function Home() {
   return (
@@ -35,7 +35,7 @@ export default function Home() {
         />
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
+            Get started by editing{' '}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
               app/page.tsx
             </code>
@@ -51,8 +51,7 @@ export default function Home() {
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <Image
               className="dark:invert"
               src="/vercel.svg"
@@ -66,8 +65,7 @@ export default function Home() {
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Read our docs
           </a>
         </div>
@@ -77,8 +75,7 @@ export default function Home() {
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <Image
             aria-hidden
             src="/file.svg"
@@ -92,8 +89,7 @@ export default function Home() {
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <Image
             aria-hidden
             src="/window.svg"
@@ -103,27 +99,25 @@ export default function Home() {
           />
           Examples
         </a>
-        {
-          routes.map(route => {
-            return (
-              <Link
-                href={route.href}
-                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  aria-hidden
-                  src="/globe.svg"
-                  alt="Globe icon"
-                  width={16}
-                  height={16}
-                />
-                {route.name} →
-              </Link>
-            )
-          })
-        }
+        {routes.map(route => {
+          return (
+            <Link
+							key={route.name}
+              href={route.href}
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              rel="noopener noreferrer">
+              <Image
+                aria-hidden
+                src="/globe.svg"
+                alt="Globe icon"
+                width={16}
+                height={16}
+              />
+              {route.name} →
+            </Link>
+          )
+        })}
       </footer>
     </div>
-  );
+  )
 }

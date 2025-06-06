@@ -1,6 +1,6 @@
 'use client'
 
-import { FloatButton, Button, Col, Row } from 'antd';
+import { FloatButton, Button, Col, Row } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import './antd.css'
 import { useRouter } from 'next/navigation'
@@ -22,10 +22,25 @@ export default function Antd() {
           <div className="bg-blue-400">col-8</div>
         </Col>
       </Row>
-      <Button type="primary" onClick={() => { router.push('/antd/dialog') }} className="mr-2">Dialog</Button>
-      <Button onClick={() => { router.push('/antd/upload') }}>Upload</Button>
-      <FloatButton icon={<QuestionCircleOutlined />} type="primary" style={{ insetInlineEnd: 24 }} />
+      <Button
+        type="primary"
+        onClick={() => {
+          router.push('/antd/dialog')
+        }}
+        className="mr-2">
+        Dialog
+      </Button>
+      <Button
+        onClick={() => {
+          router.push('/antd/upload')
+        }}>
+        Upload
+      </Button>
+      <FloatButton
+        icon={<QuestionCircleOutlined />}
+        type="primary"
+        style={{ insetInlineEnd: 24 }}
+      />
     </>
   )
 }
-

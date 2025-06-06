@@ -1,30 +1,32 @@
 'use client'
-import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
+import React, { useState } from 'react'
+import { Button, Modal } from 'antd'
 
 export default function AntdDialog(): React.FC {
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const showModal = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleOk = () => {
-    setLoading(true);
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
-  };
+      setLoading(false)
+      setOpen(false)
+    }, 3000)
+  }
 
   const handleCancel = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button
+        type="primary"
+        onClick={showModal}>
         Open Modal with customized footer
       </Button>
       <Modal
@@ -33,10 +35,16 @@ export default function AntdDialog(): React.FC {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button key="back" onClick={handleCancel}>
+          <Button
+            key="back"
+            onClick={handleCancel}>
             Return
           </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+          <Button
+            key="submit"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}>
             Submit
           </Button>,
           <Button
@@ -45,12 +53,10 @@ export default function AntdDialog(): React.FC {
             target="_blank"
             type="primary"
             loading={loading}
-            onClick={handleOk}
-          >
+            onClick={handleOk}>
             Search on Google
-          </Button>,
-        ]}
-      >
+          </Button>
+        ]}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
@@ -58,5 +64,5 @@ export default function AntdDialog(): React.FC {
         <p>Some contents...</p>
       </Modal>
     </>
-  );
+  )
 }
