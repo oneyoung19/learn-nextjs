@@ -8,196 +8,15 @@ title: Tailwind
 
 **本章内容基于 `tailwindcss@4` 版本**。
 
-## 1.基础
+根据官网指南[快速安装](https://tailwindcss.com/docs/installation/using-vite)。
 
-[安装](https://tailwindcss.com/docs/installation/using-vite)
-
-
-以上的 `layer` 是 `tailwindcss` 默认提供的，可以自定义。
-
-## 2.Directives
-
-### 2-1.@import
-
-[@import](https://tailwindcss.com/docs/functions-and-directives#import-directive) 用来引入样式文件或者 `tailwindcss` 预设样式。
-
-```css
-@import 'tailwindcss';
-```
-
-它其实等同于：
-
-```css
-@layer theme, base, components, utilities;
-
-@import "./theme.css" layer(theme);
-@import "./preflight.css" layer(base);
-@import "./utilities.css" layer(utilities);
-```
-
-### 2-2.@theme
-
-[@theme](https://tailwindcss.com/docs/functions-and-directives#theme-directive) 用来定义全局样式变量。
-
-```css
-@theme {
-  --font-display: "Satoshi", "sans-serif";
-  --breakpoint-3xl: 120rem;
-  --color-red-50: oklch(0.971 0.013 17.38);
-  --color-red-100: oklch(0.936 0.032 17.717);
-  --color-red-200: oklch(0.885 0.062 18.334);
-  --color-red-300: oklch(0.808 0.114 19.571);
-  --color-red-400: oklch(0.704 0.191 22.216);
-  --color-red-500: oklch(0.637 0.237 25.331);
-  --color-red-600: oklch(0.577 0.245 27.325);
-  --color-red-700: oklch(0.505 0.213 27.518);
-  --color-red-800: oklch(0.444 0.177 26.899);
-  --color-red-900: oklch(0.396 0.141 25.723);
-  --color-red-950: oklch(0.258 0.092 26.042);
-  /* ... */
-}
-```
-
-### 2-3.@layer
-
-`@layer` 用来定义样式的层级，支持如下值：
-
-1. `@layer base`：**基础样式**，用来处理样式的初始化，可以理解成 `reset` 样式。
-2. `@layer components`：**组件样式**，用来自定义 `class`。
-3. `@layer utilities`：**工具样式**，用来自定义工具类。
-
-:::tip
-不支持使用 `@layer theme`，会存在问题，请直接使用 `@theme`。
-:::
-
-### 2-4.@source
-
-[@source](https://tailwindcss.com/docs/functions-and-directives#source-directive)用来定义依赖样式的来源。
-
-`tailwindcss` 默认会根据[内置的规则](https://tailwindcss.com/docs/detecting-classes-in-source-files)来解析文件，从而获取到对应的样式设置。
-
-**内置的规则解析，默认是不包含 `node_modules` 中的文件的**。
-
-假设我们在开发中使用了 `node_modules` 下某一依赖库提供的 `tailwindcss` 样式，那么我们使用 `@source` 来引入该样式来源。
-
-```css
-@source "../node_modules/@my-company/ui-lib";
-```
-
-### 2-5.@utility
-
-[@utility](https://tailwindcss.com/docs/functions-and-directives#utility-directive) 可以用来自定义工具类样式。
-
-```css
-@utility content-auto {
-  content-visibility: auto;
-}
-
-@utility scrollbar-hidden {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@utility tab-* {
-  tab-size: --value(--tab-size-*);
-}
-```
-
-### 2-6.@variant
-
-[@variant](https://tailwindcss.com/docs/functions-and-directives#variant-directive) 可以在 `css` 中引用变体。
-
-```css
-.my-element {
-  background: white;
-  @variant dark {
-    background: black;
-  }
-}
-```
-
-### 2-7.@custom-variant
-
-[@custom-variant](https://tailwindcss.com/docs/functions-and-directives#custom-variant-directive) 可以自定义变体。
-
-```css
-@custom-variant theme-midnight (&:where([data-theme="midnight"] *));
-```
-
-### 2-8.@apply
-
-[@apply](https://tailwindcss.com/docs/functions-and-directives#apply-directive) 可以在 `css` 中引用工具类样式。
-
-```css
-.select2-dropdown {
-  @apply rounded-b-lg shadow-md;
-}
-.select2-search {
-  @apply rounded border border-gray-300;
-}
-.select2-results__group {
-  @apply text-lg font-bold text-gray-900;
-}
-```
-
-### 2-9.@reference
-
-[@reference](https://tailwindcss.com/docs/functions-and-directives#reference-directive) 用来在 `CSS modules` 中声明样式引用。
-
-譬如在 `Vue` 的 `SFC` 中：
-
-```vue
-<template>
-  <h1>Hello world!</h1>
-</template>
-<style>
-  @reference "../../app.css";
-  h1 {
-    @apply text-2xl font-bold text-red-500;
-  }
-</style>
-```
-
-## 3.Functions
-
-`Tailwind` 提供内置的函数来更方便的调整颜色 `color` 和间距 `spacing`。
-
-### 3-1.--alpha()
-
-`--alpha()` 函数用于设置透明度。
-
-```css
-.my-element {
-  color: --alpha(var(--color-lime-300) / 50%);
-}
-```
-
-### 3-2.--spacing()
-
-`--spacing()` 函数用于设置间距。
-
-```css
-.my-element {
-  margin: --spacing(4);
-}
-```
-
-编译后的结果如下：
-
-```css
-.my-element {
-  margin: calc(var(--spacing) * 4);
-}
-```
-
-## 3.Layer theme
+## 1.Layer theme
 
 `theme` 主要用来定义全局样式变量。
 
-### 3-1.内置主题
+### 1-1.内置主题
 
-`Tailwind` 已经定义了一些[内置主题](./#附录)。
+`Tailwind` 已经定义了一些[内置主题](https://tailwindcss.com/docs/theme#default-theme-variable-reference)。
 
 主要分为以下几个方面：
 
@@ -598,7 +417,7 @@ title: Tailwind
 }
 ```
 
-### 3-2.自定义主题
+### 1-2.自定义主题
 
 我们可以定向的**覆盖原有主题**或者**新增自定义主题**：
 
@@ -613,7 +432,7 @@ title: Tailwind
 
 然后我们就可以直接使用 `mt-2` 或者 `bg-blue` 等工具类。
 
-### 3-3.自定义变量主题
+### 1-3.自定义变量主题
 
 如果我们想要定义的 `theme` 从全局变量中获取，那么我们可以使用 `@theme inline` 定义：
 
@@ -627,7 +446,7 @@ title: Tailwind
 }
 ```
 
-## 4.Layer base
+## 2.Layer base
 
 在日常开发中，我们一般会使用 [normalize.css](https://github.com/necolas/normalize.css) 来重置默认的浏览器样式。
 
@@ -646,7 +465,7 @@ title: Tailwind
 }
 ```
 
-## 5.Layer components
+## 3.Layer components
 
 如果在实际业务中，部分 `components` 复用多次，那么可以考虑封装成公共 `class`：
 
@@ -662,7 +481,7 @@ title: Tailwind
 }
 ```
 
-## 6.Layer utilities
+## 4.Layer utilities
 
 `Tailwind` 内置了一些 `utilities`，但是 `Tailwind` 也允许[自定义 `utilities`](https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities)。
 
@@ -684,16 +503,449 @@ title: Tailwind
 }
 ```
 
-## 2.变体
+## 5.Colors
 
-Pseudo-classes 伪类
+在前文中，我们已经知道了 `Tailwind` 的 `theme` 中定义了一些 `colors` 变量。
 
-Pseudo-elements 伪元素
+本节，我们以 `colors` 为例，总结一下 `theme` 中变量的重定义方式。
 
-Media and feature queries 媒体和功能查询
+### 5-1.覆盖内置变量
 
-Attribute selectors 属性选择器
+```css
+@import "tailwindcss";
 
-Child selectors 子选择器
+@theme {
+  --color-gray-50: oklch(0.984 0.003 247.858);
+  --color-gray-100: oklch(0.968 0.007 247.896);
+  --color-gray-200: oklch(0.929 0.013 255.508);
+  --color-gray-300: oklch(0.869 0.022 252.894);
+  --color-gray-400: oklch(0.704 0.04 256.788);
+  --color-gray-500: oklch(0.554 0.046 257.417);
+  --color-gray-600: oklch(0.446 0.043 257.281);
+  --color-gray-700: oklch(0.372 0.044 257.287);
+  --color-gray-800: oklch(0.279 0.041 260.031);
+  --color-gray-900: oklch(0.208 0.042 265.755);
+  --color-gray-950: oklch(0.129 0.042 264.695);
+}
+```
 
+### 5-2.新增变量
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+}
+```
+
+### 5-3.禁用内置变量
+
+禁用内置变量，只需要将变量值设置为 `initial` 即可。
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+
+  --color-white: #fff;
+  --color-purple: #3f3cbb;
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+}
+```
+
+:::tip
+`--color-*: initial;` 是禁用了所有 `color` 内置变量。
+
+也可以使用 `--color-sky-*` 等形式来更细粒度的禁用 `color` 下的某些内置变量。
+:::
+
+## 6.Responsive design
+
+网页响应式设计是现代化网页设计绕不开的一个话题。
+
+值得庆幸的是，`Tailwind CSS` 默认提供了**开箱即用**的响应式设计工具。
+
+### 6-1.媒体查询与Rem
+
+`Tailwind` 内置了**媒体查询**和 `rem` 的结合式网页响应式设计。
+
+1. 媒体查询需要确保 `html` 中如下 `DOM`：
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+```
+
+2. `rem` 在浏览器默认的 `font-size` 是 `16px`
+
+### 6-2.内置断点
+
+`Tailwind` 内置了以下 `breakpoints`：
+
+| `Breakpoint prefix`	| `Minimum width`	| `CSS` |
+| --- | --- | --- |
+|`sm`	| `40rem (640px)`	| `@media (width >= 40rem) { ... }` |
+|`md`	|`48rem (768px)`	| `@media (width >= 48rem) { ... }` |
+|`lg`	|`64rem (1024px)`	| `@media (width >= 64rem) { ... }` |
+|`xl`	|`80rem (1280px)`	| `@media (width >= 80rem) { ... }` |
+|`2xl`	|`96rem (1536px)`	| `@media (width >= 96rem) { ... }` |
+
+从这个表格中，我们可以看出两点：
+
+1. 内置 `5` 个媒体查询断点，分别对应 `sm`、`md`、`lg`、`xl` 和 `2xl`。
+2. [Working mobile-first](https://tailwindcss.com/docs/responsive-design#working-mobile-first) **移动端优先**，也就是说我们在使用 `Tailwind CSS` 时，设置的样式默认是在 `sm` 以下的样式。
+
+如果我们想要设置 `sm`、`md`、`lg`、`xl`、`2xl` 以上的样式，那么我们需要使用 `varient` 来设置：
+
+```html
+<div class="bg-red-100 sm:bg-red-200 md:bg-red-300 lg:bg-red-400 xl:bg-red-500 2xl:bg-red-600"></div>
+```
+
+如果想要更新粒度的来控制响应式设计，譬如想要在 `sm-lg` 之间设置，那么可以使用 `max-*`：
+
+```html
+<div class="bg-red-100 sm:max-lg:bg-red-500"></div>
+```
+
+完全的 `max-*` 设置见下表：
+
+|`Variant`| 	`Media query`|
+|------| 	----------|
+|`max-sm`|	`@media (width < 40rem) { ... }`|
+|`max-md`|	`@media (width < 48rem) { ... }`|
+|`max-lg`|	`@media (width < 64rem) { ... }`|
+|`max-xl`|	`@media (width < 80rem) { ... }`|
+|`max-2xl`|	`@media (width < 96rem) { ... }`|
+
+### 6-3.自定义断点
+
+我们可以使用 `--breakpoint-*` 来自定义断点：
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+}
+```
+
+如果需要使用没有意义的一次性断点，则可以使用 `min` 或 `max` 变量，使用任意值动态生成自定义断点：
+
+```html
+<div class="max-[600px]:bg-sky-300 min-[320px]:text-center">
+  <!-- ... -->
+</div>
+```
+
+### 6-4.容器查询
+
+[容器查询](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries)是现代化浏览器的新特性。
+
+它允许**根据父元素的大小（而不是整个视口的大小）**来设置样式。
+
+媒体查询的语句是 `@media`，而容器查询的语句是 `@container`。
+
+在 `Tailwind` 中，可以直接这样使用：
+
+```html
+<div class="@container">
+  <div class="flex flex-col @md:flex-row @8xl:bg-sky-500">
+    <!-- ... -->
+  </div>
+</div>
+```
+
+同样的，需要设定断点范围时，容器查询可以使用 `@min-*` 和 `@max-*`。
+
+但不同于媒体查询的 `--breakpoint-*`，容器查询提供了 `--container-*` 样式变量：
+
+```css
+@theme {
+	--container-3xs: 16rem;
+  --container-2xs: 18rem;
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+}
+```
+
+对于使用多个嵌套容器的复杂设计，可以使用 `@container/{name}` 命名容器，譬如 `@sm/{name}` 和 `@md/{name}` 等：
+
+```html
+<div class="@container/main">
+  <!-- ... -->
+  <div class="flex flex-row @sm/main:flex-col">
+    <!-- ... -->
+  </div>
+</div>
+```
+
+## 7.Variants
+
+`Tailwind` 中的每个实用程序类都可以通过**在类名的开头添加一个变体来有条件地应用**，该变体描述了想要针对的条件。
+
+内置变体如下：
+
+1. `Pseudo-classes` **伪类**，譬如 `:hover` 、 `:focus` 、 `:first-child` 和 `:required`；
+2. `Pseudo-elements` **伪元素**，譬如 `::before` 、 `::after` 、 `::selection` 和 `::placeholder`；
+3. `Media and feature queries` **媒体和功能查询**，譬如响应断点、暗模式和 `prefers-reduced-motion`；
+4. `Attribute selectors` **属性选择器**，譬如 `[dir="rtl"]` 和 `[open]`；
+5. `Child selectors` **子选择器**，譬如 `& > *` 和 `& *`。
+
+### 7-1.Pseudo-classes
+
+伪类[Pseudo-classes](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-classes)
+
+### 7-2.Pseudo-elements
+
+伪元素[Pseudo-elements](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-elements)
+
+### 7-3.Media and feature queries
+
+媒体和功能查询[Media and feature queries](https://tailwindcss.com/docs/hover-focus-and-other-states#media-and-feature-queries)
+
+### 7-4.Attribute selectors
+
+属性选择器[Attribute selectors](https://tailwindcss.com/docs/hover-focus-and-other-states#attribute-selectors)
+
+### 7-5.Child selectors
+
+子选择器[Child selectors](https://tailwindcss.com/docs/hover-focus-and-other-states#child-selectors)
+
+### ps.Custom variants
+
+此处重点记录下自定义变体[Custom variants](https://tailwindcss.com/docs/hover-focus-and-other-states#custom-variants)。
+
+**任意变体**的用法与**任意值**[arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)的用法类似。
+
+**任意变体只是用方括号括起来的表示选择器的格式字符串**。
+
+例如，当元素具有 `is-dragging` 类时，以下任意变体会将光标更改为 `grabbing` ：
+
+```html
+<ul role="list">
+  {#each items as item}
+    <li class="[&.is-dragging]:cursor-grabbing">{item}</li>
+  {/each}
+</ul>
+```
+
+如果选择器中需要空格，可以使用下划线。例如，以下任意变体将选择添加了该类的元素内的所有 `p` 元素：
+
+```html
+<div class="[&_p]:mt-4">
+  <p>Lorem ipsum...</p>
+  <ul>
+    <li>
+      <p>Lorem ipsum...</p>
+    </li>
+    <!-- ... -->
+  </ul>
+</div>
+```
+
+如果在项目中多次使用相同的任意变体，则可能值得使用 `@custom-variant` 指令创建自定义变体：
+
+```css
+@custom-variant theme-midnight (&:where([data-theme="midnight"] *));
+```
+
+然后这样使用：
+
+```html
+<html data-theme="midnight">
+  <button class="theme-midnight:bg-black ..."></button>
+</html>
+```
+
+## 8.Directives
+
+### 8-1.@import
+
+[@import](https://tailwindcss.com/docs/functions-and-directives#import-directive) 用来引入样式文件或者 `tailwindcss` 预设样式。
+
+```css
+@import 'tailwindcss';
+```
+
+它其实等同于：
+
+```css
+@layer theme, base, components, utilities;
+
+@import "./theme.css" layer(theme);
+@import "./preflight.css" layer(base);
+@import "./utilities.css" layer(utilities);
+```
+
+### 8-2.@theme
+
+[@theme](https://tailwindcss.com/docs/functions-and-directives#theme-directive) 用来定义全局样式变量。
+
+```css
+@theme {
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 120rem;
+  --color-red-50: oklch(0.971 0.013 17.38);
+  --color-red-100: oklch(0.936 0.032 17.717);
+  --color-red-200: oklch(0.885 0.062 18.334);
+  --color-red-300: oklch(0.808 0.114 19.571);
+  --color-red-400: oklch(0.704 0.191 22.216);
+  --color-red-500: oklch(0.637 0.237 25.331);
+  --color-red-600: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.505 0.213 27.518);
+  --color-red-800: oklch(0.444 0.177 26.899);
+  --color-red-900: oklch(0.396 0.141 25.723);
+  --color-red-950: oklch(0.258 0.092 26.042);
+  /* ... */
+}
+```
+
+### 8-3.@layer
+
+`@layer` 用来定义样式的层级，支持如下值：
+
+1. `@layer base`：**基础样式**，用来处理样式的初始化，可以理解成 `reset` 样式。
+2. `@layer components`：**组件样式**，用来自定义 `class`。
+3. `@layer utilities`：**工具样式**，用来自定义工具类。
+
+:::tip
+不支持使用 `@layer theme`，会存在问题，请直接使用 `@theme`。
+:::
+
+### 8-4.@source
+
+[@source](https://tailwindcss.com/docs/functions-and-directives#source-directive)用来定义依赖样式的来源。
+
+`tailwindcss` 默认会根据[内置的规则](https://tailwindcss.com/docs/detecting-classes-in-source-files)来解析文件，从而获取到对应的样式设置。
+
+**内置的规则解析，默认是不包含 `node_modules` 中的文件的**。
+
+假设我们在开发中使用了 `node_modules` 下某一依赖库提供的 `tailwindcss` 样式，那么我们使用 `@source` 来引入该样式来源。
+
+```css
+@source "../node_modules/@my-company/ui-lib";
+```
+
+### 8-5.@utility
+
+[@utility](https://tailwindcss.com/docs/functions-and-directives#utility-directive) 可以用来自定义工具类样式。
+
+```css
+@utility content-auto {
+  content-visibility: auto;
+}
+
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility tab-* {
+  tab-size: --value(--tab-size-*);
+}
+```
+
+### 8-6.@variant
+
+[@variant](https://tailwindcss.com/docs/functions-and-directives#variant-directive) 可以在 `css` 中引用变体。
+
+```css
+.my-element {
+  background: white;
+  @variant dark {
+    background: black;
+  }
+}
+```
+
+### 8-7.@custom-variant
+
+[@custom-variant](https://tailwindcss.com/docs/functions-and-directives#custom-variant-directive) 可以自定义变体。
+
+```css
+@custom-variant theme-midnight (&:where([data-theme="midnight"] *));
+```
+
+### 8-8.@apply
+
+[@apply](https://tailwindcss.com/docs/functions-and-directives#apply-directive) 可以在 `css` 中引用工具类样式。
+
+```css
+.select2-dropdown {
+  @apply rounded-b-lg shadow-md;
+}
+.select2-search {
+  @apply rounded border border-gray-300;
+}
+.select2-results__group {
+  @apply text-lg font-bold text-gray-900;
+}
+```
+
+### 8-9.@reference
+
+[@reference](https://tailwindcss.com/docs/functions-and-directives#reference-directive) 用来在 `CSS modules` 中声明样式引用。
+
+譬如在 `Vue` 的 `SFC` 中：
+
+```vue
+<template>
+  <h1>Hello world!</h1>
+</template>
+<style>
+  @reference "../../app.css";
+  h1 {
+    @apply text-2xl font-bold text-red-500;
+  }
+</style>
+```
+
+## 9.Functions
+
+`Tailwind` 提供内置的函数来更方便的调整颜色 `color` 和间距 `spacing`。
+
+### 9-1.--alpha()
+
+`--alpha()` 函数用于设置透明度。
+
+```css
+.my-element {
+  color: --alpha(var(--color-lime-300) / 50%);
+}
+```
+
+### 9-2.--spacing()
+
+`--spacing()` 函数用于设置间距。
+
+```css
+.my-element {
+  margin: --spacing(4);
+}
+```
+
+编译后的结果如下：
+
+```css
+.my-element {
+  margin: calc(var(--spacing) * 4);
+}
+```
 

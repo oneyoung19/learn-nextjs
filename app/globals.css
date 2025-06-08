@@ -130,3 +130,5 @@
 		@apply text-center;
   }
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
