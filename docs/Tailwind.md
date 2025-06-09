@@ -697,6 +697,8 @@ title: Tailwind
 
 ## 7.Variants
 
+`Variants` 变体指的就是**一定条件**下应用某些类名。
+
 `Tailwind` 中的每个实用程序类都可以通过**在类名的开头添加一个变体来有条件地应用**，该变体描述了想要针对的条件。
 
 内置变体如下：
@@ -706,6 +708,20 @@ title: Tailwind
 3. `Media and feature queries` **媒体和功能查询**，譬如响应断点、暗模式和 `prefers-reduced-motion`；
 4. `Attribute selectors` **属性选择器**，譬如 `[dir="rtl"]` 和 `[open]`；
 5. `Child selectors` **子选择器**，譬如 `& > *` 和 `& *`。
+
+:::tip
+`Variants` 变体，会**改变类名**。
+
+譬如，`dark:bg-red-500` 会被编译为：
+
+```css
+.dark\:bg-red-500:where(.dark, .dark *) {
+  background-color: var(--color-red-500);
+}
+```
+
+那么实际类名会是 `.dark\:bg-red-500`，**当需要自定义某类名，从而覆盖样式时，这一点需要额外注意**。
+:::
 
 ### 7-1.Pseudo-classes
 
@@ -825,7 +841,7 @@ title: Tailwind
 3. `@layer utilities`：**工具样式**，用来自定义工具类。
 
 :::tip
-不支持使用 `@layer theme`，会存在问题，请直接使用 `@theme`。
+**`Tailwind` 不支持使用 `@layer theme`，它不会解析 `@layer theme` 语法，请直接使用 `@theme`**。
 :::
 
 ### 8-4.@source
@@ -949,3 +965,20 @@ title: Tailwind
 }
 ```
 
+## 10.Syntax
+
+1. [Layout](https://tailwindcss.com/docs/position)
+2. [Flexbox & Grid](https://tailwindcss.com/docs/flex)
+3. [Spacing](https://tailwindcss.com/docs/margin)
+4. [Sizing](https://tailwindcss.com/docs/width)
+5. [Typography](https://tailwindcss.com/docs/font-family)
+6. [Backgrounds](https://tailwindcss.com/docs/background-color)
+7. [Borders](https://tailwindcss.com/docs/border-color)
+8. [Effects](https://tailwindcss.com/docs/box-shadow)
+9. [Filters](https://tailwindcss.com/docs/filter-blur)
+10. [Tables](https://tailwindcss.com/docs/border-collapse)
+11. [Transitions & Animation](https://tailwindcss.com/docs/transition-property)
+12. [Transforms](https://tailwindcss.com/docs/transform)
+13. [Interactivity](https://tailwindcss.com/docs/cursor)
+14. [SVG](https://tailwindcss.com/docs/fill)
+15. [Accessibility](https://tailwindcss.com/docs/forced-color-adjust)

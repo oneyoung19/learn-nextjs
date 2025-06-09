@@ -132,3 +132,34 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant i18n (&:where([data-lang="en"], [data-lang="en"] *));
+
+@layer utilities {
+  .i18n\:bg-red-500 {
+    background-color: blue!important;
+  }
+}
+
+@layer theme {
+	:root {
+		--color-android: #3DDC84;
+	}
+}
+
+@theme {
+	--color-ios: #007AFF;
+}
+
+@layer layerA {
+	.table .row  {
+		color: blue;
+	}
+}
+
+@layer layerB {
+	.row  {
+		color: red;
+	}
+}
+
+/* @import url(index.css) layer(index); */
