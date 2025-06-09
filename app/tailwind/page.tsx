@@ -29,6 +29,7 @@ export default function Tailwind() {
 			<div className="table">
 				<div className="row">Layer</div>
 			</div>
+
 		</div>
   )
 }
