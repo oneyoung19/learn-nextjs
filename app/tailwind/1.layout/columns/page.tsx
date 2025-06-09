@@ -1,16 +1,28 @@
 import Image from 'next/image'
+// import { Loader } from 'lucide-react'
+
+/*
+[columns](https://tailwindcss.com/docs/columns)
+
+列布局，能够很方便的实现瀑布流效果。
+*/
+
+const length = 200
 
 export default function Columns() {
   return (
     <div>
-			<p>Columns</p>
-			<div className="columns-3 gap-4">
-				<Image className="aspect-2/3" width="200" height="300" src="https://picsum.photos/200/300" alt="" />
-				<Image className="aspect-square" width="200" height="200" src="https://picsum.photos/id/111/200" alt="" />
-				<Image className="aspect-square" width="200" height="200" src="https://picsum.photos/id/222/200" alt="" />
-				<Image className="aspect-square" width="200" height="200" src="https://picsum.photos/id/33/200" alt="" />
-				<Image className="aspect-square" width="200" height="200" src="https://picsum.photos/id/444/200" alt="" />
-				<Image className="aspect-square" width="200" height="200" src="https://picsum.photos/id/555/200" alt="" />
+			<p className="h1">Columns</p>
+			<div className="columns-3 gap-3 md:columns-8">
+			 	{/* <Loader className="animate-spin"></Loader> */}
+				{Array.from({ length }, (_, i) => i + 1).map((item, index) => {
+					const width = 200
+					const height = Math.ceil(Math.random() * 2) * width
+					const ratio = width / height
+					return (
+						<Image key={item} className="mb-4 rounded-md" style={{ aspectRatio: `${ratio}` }} width={width} height={height} src={`https://picsum.photos/id/${index}/${width}/${height}`} alt={`image ${index}`} />
+					)
+				})}
 			</div>
 		</div>
   );

@@ -1,5 +1,10 @@
 import Image from 'next/image'
 
+/*
+[aspect-ratio](https://tailwindcss.com/docs/aspect-ratio)
+
+声明元素的宽高比。
+*/
 export default function AspectRatio() {
   return (
     <div className="p-2 bg-amber-300">
