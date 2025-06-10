@@ -6,7 +6,7 @@ title: Tailwind
 
 可以将其理解为**原子化**的样式设计。
 
-**本章内容基于 `tailwindcss@4` 版本**。
+**本章内容基于 `tailwindcss@4` 版本**。[看一下v4版本的新特点](https://tailwindcss.com/blog/tailwindcss-v4)。
 
 根据官网指南[快速安装](https://tailwindcss.com/docs/installation/using-vite)。
 
@@ -644,7 +644,41 @@ title: Tailwind
 </div>
 ```
 
-### 6-4.容器查询
+### 6-4.断点样式变量
+
+假设有一个样式变量 `--sidebar-width`，我们想要它在不同的屏幕下显示不同的宽度，那么在 `tailwindcss@4` 版本中，推荐这样使用：
+
+```css
+@media (min-width: theme(--breakpoint-sm)) {
+  :root {
+    --sidebar-width: 12rem;
+  }
+}
+
+@media (min-width: theme(--breakpoint-md)) {
+  :root {
+    --sidebar-width: 14rem;
+  }
+}
+```
+
+笔者测试，在 `tailwindcss@4.1.8` 版本中，`@screen` 指令也是生效的，但在官方文档中已经查不到用法了。
+
+```css
+@screen sm {
+	--sidebar-width: 12rem;
+}
+
+@screen md {
+	--sidebar-width: 14rem;
+}
+```
+
+:::tip
+关于上述用法的抉择，您可以参考这个[Discussion](https://github.com/tailwindlabs/tailwindcss/discussions/15960)。
+:::
+
+### 6-5.容器查询
 
 [容器查询](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries)是现代化浏览器的新特性。
 
