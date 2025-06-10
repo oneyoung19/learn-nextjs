@@ -25,7 +25,7 @@ export default function Page({ children }) {
 	const matched = findMatchedRoutes(routeEnums, pathname).map(item => item.title)
 	const total = matched.length
   return (
-    <SidebarProvider>
+    <SidebarProvider className="max-lg:[--sidebar-width:14rem]!">
       <TailwindSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
