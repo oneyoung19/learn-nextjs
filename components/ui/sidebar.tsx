@@ -140,6 +140,8 @@ function SidebarProvider({
           }
           className={cn(
             'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full',
+						// 添加响应式 CSS 变量
+            'sm:[--sidebar-width:10rem] md:[--sidebar-width:12rem] lg:[--sidebar-width:16rem] xl:[--sidebar-width:16rem] 2xl:[--sidebar-width:16rem]',
             className
           )}
           {...props}

@@ -12,20 +12,22 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import {
+	useSidebar,
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 
 import { routeEnums } from './enum'
-import { findMatchedRoutes } from '@/lib/utils'
+import { cn, findMatchedRoutes } from '@/lib/utils'
 
 export default function Page({ children }) {
 	const pathname = usePathname()
 	const matched = findMatchedRoutes(routeEnums, pathname).map(item => item.title)
 	const total = matched.length
+
   return (
-    <SidebarProvider className="max-lg:[--sidebar-width:14rem]!">
+    <SidebarProvider>
       <TailwindSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
@@ -48,10 +50,19 @@ export default function Page({ children }) {
             </Breadcrumb>
           </div>
         </header>
-				<div className="p-4 md:max-w-[calc(100vw_-_var(--sidebar-width))]">
-					{ children }
-				</div>
+				<Container>{ children }</Container>
       </SidebarInset>
     </SidebarProvider>
   )
+}
+
+// w-full 和 max-w-[calc(100vw_-_var(--sidebar-width))] 根据侧边栏是否显示动态设置
+function Container({ children }) {
+	const { isMobile, open } = useSidebar()
+	const flat = isMobile ? true : !open // mobile始终视作true 因为mobile端sidebar不占容器宽度 是fixed布局
+	return (
+		<div className={cn('w-full p-4', flat ? '' : 'max-w-[calc(100vw_-_var(--sidebar-width))]')}>
+			{ children }
+		</div>
+	)
 }

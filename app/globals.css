@@ -41,7 +41,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-	--sidebar-width: 12rem;
 }
 
 :root {
@@ -77,17 +76,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-}
-
-@screen md {
-  :root {
-    --sidebar-width: 14rem;
-  }
-}
-@screen lg {
-  :root {
-    --sidebar-width: 16rem;
-  }
 }
 
 .dark {
@@ -160,7 +148,6 @@
 
 @theme {
 	--color-ios: #007AFF;
-	--sidebar-width: 16rem;
 }
 
 @layer layerA {
