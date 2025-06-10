@@ -38,8 +38,7 @@ export default function Page({ children }) {
             </Breadcrumb>
           </div>
         </header>
-				<div className="p-4 max-w-[calc(100vw_-_var(--sidebar-width))]
-">
+				<div className="p-4 md:max-w-[calc(100vw_-_var(--sidebar-width))]">
 					{ children }
 				</div>
         {/* <div className="flex flex-1 flex-col gap-4 p-4">

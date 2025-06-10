@@ -23,25 +23,7 @@ import {
 } from '@/components/ui/sidebar'
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-
-// This is sample data.
-const data = {
-  navMain: [
-    {
-      title: 'Layout',
-      items: [
-        {
-          title: 'aspect-ratio',
-          url: '/tailwind/1.layout/aspect-ratio',
-        },
-        {
-          title: 'columns',
-          url: '/tailwind/1.layout/columns',
-        },
-      ],
-    }
-  ],
-}
+import { routeEnums } from './enum'
 
 export function TailwindSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const router = useRouter()
@@ -73,7 +55,7 @@ export function TailwindSidebar({ ...props }: React.ComponentProps<typeof Sideba
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map(item => (
+            {routeEnums.map(item => (
               <Collapsible
                 key={item.title}
                 defaultOpen={item.items.some(child => child.url === pathname)}
