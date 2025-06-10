@@ -1,8 +1,11 @@
+'use client'
+import { Fragment } from 'react'
+import { usePathname } from 'next/navigation'
 import { TailwindSidebar } from './sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
+  // BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -14,7 +17,13 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 
+import { routeEnums } from './enum'
+import { findMatchedRoutes } from '@/lib/utils'
+
 export default function Page({ children }) {
+	const pathname = usePathname()
+	const matched = findMatchedRoutes(routeEnums, pathname).map(item => item.title)
+	const total = matched.length
   return (
     <SidebarProvider>
       <TailwindSidebar />
@@ -25,15 +34,16 @@ export default function Page({ children }) {
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
+								{
+									matched.map((match, index) => (
+										<Fragment key={match}>
+											<BreadcrumbItem className="hidden md:block">
+												<BreadcrumbPage>{ match }</BreadcrumbPage>
+											</BreadcrumbItem>
+											{ (index < total - 1) && <BreadcrumbSeparator className="hidden md:block" /> }
+										</Fragment>
+									))
+								}
               </BreadcrumbList>
             </Breadcrumb>
           </div>
@@ -41,14 +51,6 @@ export default function Page({ children }) {
 				<div className="p-4 md:max-w-[calc(100vw_-_var(--sidebar-width))]">
 					{ children }
 				</div>
-        {/* <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
-        </div> */}
       </SidebarInset>
     </SidebarProvider>
   )

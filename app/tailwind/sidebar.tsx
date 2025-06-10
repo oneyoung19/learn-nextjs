@@ -22,16 +22,11 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar'
 
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { routeEnums } from './enum'
 
 export function TailwindSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-	const router = useRouter()
 	const pathname = usePathname()
-	const searchParams = useSearchParams()
-	console.log(router)
-	console.log(pathname)
-	console.log(searchParams)
   return (
     <Sidebar {...props}>
       <SidebarHeader>
