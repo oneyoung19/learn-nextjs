@@ -12,10 +12,24 @@ export default function AntdDialog(): React.FC {
 
   const handleOk = () => {
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setOpen(false)
-    }, 3000)
+		// const url = 'https://jsonplaceholder.typicode.com/posts'
+		const url = '/api/posts'
+		fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then(res => {
+			console.log(res.json())
+		}).catch(console.error).finally(() => {
+			setLoading(false)
+    	setOpen(false)
+		})
   }
 
   const handleCancel = () => {

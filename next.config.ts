@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
 	images: {
 		unoptimized: true,
 		remotePatterns: [new URL('https://picsum.photos/**')],
+	},
+	// [SSR反向代理](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites)
+	rewrites () {
+		return [
+			{
+				source: '/api/:slug*',
+				destination: 'https://jsonplaceholder.typicode.com/:slug*',
+			}
+		]
 	}
 }
 
