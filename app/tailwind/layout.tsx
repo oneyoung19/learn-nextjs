@@ -28,6 +28,8 @@ import { routeEnums } from './enum'
 import { cn, findMatchedRoutes } from '@/lib/utils'
 import { Palette } from 'lucide-react'
 import { SelectTable } from '@/components/selectTable'
+import { useSwitchTwClassStore, SwitchTwClassProvider } from '@/providers/switch-tw-class'
+// import { useSwitchTwClassStore } from '@/providers/switch-tw-class'
 
 export default function Page({ children }) {
 	const pathname = usePathname()
@@ -37,43 +39,46 @@ export default function Page({ children }) {
 	const lastMatchedRoutes = matchedRoutes[matchedRoutes.length - 1]
 	const { tableMap = {} } = lastMatchedRoutes
 
+
   return (
-    <SidebarProvider>
-      <TailwindSidebar />
-      <SidebarInset>
-        <header className="flex justify-between h-16 shrink-0 items-center gap-2 border-b px-4">
-          <div className="flex items-center gap-2 h-4">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-								{
-									matched.map((match, index) => (
-										<Fragment key={match}>
-											<BreadcrumbItem className="hidden md:block">
-												<BreadcrumbPage>{ match }</BreadcrumbPage>
-											</BreadcrumbItem>
-											{ (index < total - 1) && <BreadcrumbSeparator className="hidden md:block" /> }
-										</Fragment>
-									))
-								}
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-					<div className="flex items-center justify-between">
-						<Popover>
-							<PopoverTrigger>
-								<Palette />
-							</PopoverTrigger>
-							<PopoverContent className="w-auto" align="end">
-								<SelectTable {...tableMap}></SelectTable>
-							</PopoverContent>
-						</Popover>
-					</div>
-        </header>
-				<Container>{ children }</Container>
-      </SidebarInset>
-    </SidebarProvider>
+		<SwitchTwClassProvider>
+			<SidebarProvider>
+				<TailwindSidebar />
+				<SidebarInset>
+					<header className="flex justify-between h-16 shrink-0 items-center gap-2 border-b px-4">
+						<div className="flex items-center gap-2 h-4">
+							<SidebarTrigger />
+							<Separator orientation="vertical" className="mr-2 h-4" />
+							<Breadcrumb>
+								<BreadcrumbList>
+									{
+										matched.map((match, index) => (
+											<Fragment key={match}>
+												<BreadcrumbItem className="hidden md:block">
+													<BreadcrumbPage>{ match }</BreadcrumbPage>
+												</BreadcrumbItem>
+												{ (index < total - 1) && <BreadcrumbSeparator className="hidden md:block" /> }
+											</Fragment>
+										))
+									}
+								</BreadcrumbList>
+							</Breadcrumb>
+						</div>
+						<div className="flex items-center justify-between">
+							<Popover>
+								<PopoverTrigger>
+									<Palette />
+								</PopoverTrigger>
+								<PopoverContent className="w-auto" align="end">
+									<SelectTableWithStore {...tableMap}></SelectTableWithStore>
+								</PopoverContent>
+							</Popover>
+						</div>
+					</header>
+					<Container>{ children }</Container>
+				</SidebarInset>
+			</SidebarProvider>
+		</SwitchTwClassProvider>
   )
 }
 
@@ -85,5 +90,16 @@ function Container({ children }) {
 		<div className={cn('w-full p-4 transition-[max-width] duration-300 ease-in-out', flat ? 'max-w-full' : 'max-w-[calc(100vw_-_var(--sidebar-width))]')}>
 			{ children }
 		</div>
+	)
+}
+
+function SelectTableWithStore (props) {
+	const { switchTwClass } = useSwitchTwClassStore(
+    (state) => state,
+  )
+	return (
+		<SelectTable {...props} onSelect={value => switchTwClass({
+			switchedTwClass: value
+		})}></SelectTable>
 	)
 }

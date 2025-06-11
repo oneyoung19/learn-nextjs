@@ -13,7 +13,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 
-export function SelectTable({ headers = [], rows = [] }: {
+export function SelectTable({ headers = [], rows = [], onSelect }: {
 	headers: object[],
 	rows: object[]
 } = {}) {
@@ -44,7 +44,12 @@ export function SelectTable({ headers = [], rows = [] }: {
 										<div className="flex justify-start items-center">
 											{header.selectable ? (
 												<>
-													<RadioGroup className="mr-2" value={radioValue} onValueChange={(value) => setRadioValue(value)}>
+													<RadioGroup className="mr-2" value={radioValue} onValueChange={(value) => {
+														setRadioValue(value)
+														if (onSelect) {
+															onSelect(value)
+														}
+													}}>
 														<RadioGroupItem
 															value={row[header.prop]}>
 														</RadioGroupItem>
