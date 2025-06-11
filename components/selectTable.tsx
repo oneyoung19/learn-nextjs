@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import {
   Table,
   TableBody,
@@ -14,6 +17,8 @@ export function SelectTable({ headers = [], rows = [] }: {
 	headers: object[],
 	rows: object[]
 } = {}) {
+	const [ radioValue, setRadioValue ]  = useState('')
+
   return (
     <Table>
 			<TableHeader>
@@ -39,8 +44,10 @@ export function SelectTable({ headers = [], rows = [] }: {
 										<div className="flex justify-start items-center">
 											{header.selectable ? (
 												<>
-													<RadioGroup className="mr-2">
-														<RadioGroupItem value={row[header.prop]}>123</RadioGroupItem>
+													<RadioGroup className="mr-2" value={radioValue} onValueChange={(value) => setRadioValue(value)}>
+														<RadioGroupItem
+															value={row[header.prop]}>
+														</RadioGroupItem>
 													</RadioGroup>
 													<Label htmlFor={row[header.prop]} className="text-xs/6">{row[header.prop]}</Label>
 												</>

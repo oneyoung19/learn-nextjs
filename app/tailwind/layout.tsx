@@ -1,4 +1,5 @@
 'use client'
+
 import { Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 import { TailwindSidebar } from './sidebar'
@@ -17,21 +18,31 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 
 import { routeEnums } from './enum'
 import { cn, findMatchedRoutes } from '@/lib/utils'
+import { Palette } from 'lucide-react'
+import { SelectTable } from '@/components/selectTable'
 
 export default function Page({ children }) {
 	const pathname = usePathname()
-	const matched = findMatchedRoutes(routeEnums, pathname).map(item => item.title)
+	const matchedRoutes = findMatchedRoutes(routeEnums, pathname)
+	const matched = matchedRoutes.map(item => item.title)
 	const total = matched.length
+	const lastMatchedRoutes = matchedRoutes[matchedRoutes.length - 1]
+	const { tableMap = {} } = lastMatchedRoutes
 
   return (
     <SidebarProvider>
       <TailwindSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b">
-          <div className="flex items-center gap-2 px-3">
+        <header className="flex justify-between h-16 shrink-0 items-center gap-2 border-b px-4">
+          <div className="flex items-center gap-2 h-4">
             <SidebarTrigger />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
@@ -49,6 +60,16 @@ export default function Page({ children }) {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+					<div className="flex items-center justify-between">
+						<Popover>
+							<PopoverTrigger>
+								<Palette />
+							</PopoverTrigger>
+							<PopoverContent className="w-auto" align="end">
+								<SelectTable {...tableMap}></SelectTable>
+							</PopoverContent>
+						</Popover>
+					</div>
         </header>
 				<Container>{ children }</Container>
       </SidebarInset>
