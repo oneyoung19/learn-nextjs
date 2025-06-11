@@ -61,7 +61,7 @@ function Container({ children }) {
 	const { isMobile, open } = useSidebar()
 	const flat = isMobile ? true : !open // mobile始终视作true 因为mobile端sidebar不占容器宽度 是fixed布局
 	return (
-		<div className={cn('w-full p-4', flat ? '' : 'max-w-[calc(100vw_-_var(--sidebar-width))]')}>
+		<div className={cn('w-full p-4 transition-[max-width] duration-300 ease-in-out', flat ? 'max-w-full' : 'max-w-[calc(100vw_-_var(--sidebar-width))]')}>
 			{ children }
 		</div>
 	)

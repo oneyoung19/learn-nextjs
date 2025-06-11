@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Example } from '@/components/example'
 
 /*
 [aspect-ratio](https://tailwindcss.com/docs/aspect-ratio)
@@ -7,8 +8,10 @@ import Image from 'next/image'
 */
 export default function AspectRatio() {
   return (
-    <div className="p-2 bg-slate-200 rounded-xs md:rounded-md">
+    <Example resizable className="p-2 bg-slate-200 rounded-xs md:rounded-md">
 			<Image className="mx-auto aspect-square" width="400" height="400"  src="https://picsum.photos/id/9/400" alt="" />
-    </div>
+    </Example>
   )
 }
+
+// md:[width:var(--sidebar-width)]
