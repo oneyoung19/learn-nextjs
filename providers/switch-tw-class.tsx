@@ -4,11 +4,10 @@ import { createContext, useRef, useContext } from 'react'
 import { useStore } from 'zustand'
 
 import {
-  initSwitchTwClassStore,
 	createSwitchTwClassStore
 } from '@/stores/switch-tw-class'
 
-export const SwitchTwClassStoreContext = createContext(
+const SwitchTwClassStoreContext = createContext(
   undefined,
 )
 
@@ -17,7 +16,7 @@ export const SwitchTwClassProvider = ({
 }) => {
   const storeRef = useRef(null)
   if (storeRef.current === null) {
-    storeRef.current = createSwitchTwClassStore(initSwitchTwClassStore())
+    storeRef.current = createSwitchTwClassStore()
   }
 
   return (

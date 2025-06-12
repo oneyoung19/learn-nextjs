@@ -1,9 +1,5 @@
 import { createStore } from 'zustand/vanilla'
 
-export const initSwitchTwClassStore = () => {
-  return { switchedTwClass: '' }
-}
-
 export const defaultInitState = {
   switchedTwClass: ''
 }

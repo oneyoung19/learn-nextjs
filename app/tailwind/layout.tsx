@@ -29,7 +29,6 @@ import { cn, findMatchedRoutes } from '@/lib/utils'
 import { Palette } from 'lucide-react'
 import { SelectTable } from '@/components/selectTable'
 import { useSwitchTwClassStore, SwitchTwClassProvider } from '@/providers/switch-tw-class'
-// import { useSwitchTwClassStore } from '@/providers/switch-tw-class'
 
 export default function Page({ children }) {
 	const pathname = usePathname()
