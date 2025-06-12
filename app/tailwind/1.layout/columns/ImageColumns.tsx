@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import clsx from 'clsx'
+import { useSwitchTwClassStore } from '@/providers/switch-tw-class'
+import { cn } from '@/lib/utils'
 
 /*
 [columns](https://tailwindcss.com/docs/columns)
@@ -40,10 +42,11 @@ function ImageItem({ item }) {
 }
 
 export default function ImageColumns({ list }) {
+	const { switchedTwClass } = useSwitchTwClassStore()
   return (
     <div>
       <p className="h1">Columns</p>
-      <div className="columns-3 gap-3 md:columns-8">
+      <div className={cn('columns-3 gap-3 md:columns-8', switchedTwClass)}>
         {list.map((item) => (
           <ImageItem key={item.id} item={item} />
         ))}

@@ -92,7 +92,7 @@ function PopoverWithStore (props) {
   )
 
 	const { rows = [] } = props
-	const { twClass = '' } = rows.find(item => item.defaultSelected)
+	const { twClass = '' } = rows.find(item => item.defaultSelected) || {}
 	useEffect(() => {
 		switchTwClass({
 			switchedTwClass: twClass
