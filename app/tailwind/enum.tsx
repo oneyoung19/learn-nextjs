@@ -28,7 +28,8 @@ export const routeEnums = [
 						},
 						{
 							twClass: 'aspect-video',
-							twStyle: 'aspect-ratio: var(--aspect-ratio-video); /* 16 / 9 */'
+							twStyle: 'aspect-ratio: var(--aspect-ratio-video); /* 16 / 9 */',
+							defaultSelected: true
 						},
 						{
 							twClass: 'aspect-auto',

@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { TailwindSidebar } from './sidebar'
 import {
@@ -34,11 +34,12 @@ import { useSwitchTwClassStore, SwitchTwClassProvider } from '@/providers/switch
 export default function Page({ children }) {
 	const pathname = usePathname()
 	const matchedRoutes = findMatchedRoutes(routeEnums, pathname)
-	const matched = matchedRoutes.map(item => item.title)
-	const total = matched.length
-	const lastMatchedRoutes = matchedRoutes[matchedRoutes.length - 1]
+
+	const lastMatchedRoutes = matchedRoutes[matchedRoutes.length - 1] || {}
 	const { tableMap = {} } = lastMatchedRoutes
 
+	const matched = matchedRoutes.map(item => item.title)
+	const total = matched.length
 
   return (
 		<SwitchTwClassProvider>
@@ -65,14 +66,7 @@ export default function Page({ children }) {
 							</Breadcrumb>
 						</div>
 						<div className="flex items-center justify-between">
-							<Popover>
-								<PopoverTrigger>
-									<Palette />
-								</PopoverTrigger>
-								<PopoverContent className="w-auto" align="end">
-									<SelectTableWithStore {...tableMap}></SelectTableWithStore>
-								</PopoverContent>
-							</Popover>
+							<PopoverWithStore {...tableMap}></PopoverWithStore>
 						</div>
 					</header>
 					<Container>{ children }</Container>
@@ -93,13 +87,29 @@ function Container({ children }) {
 	)
 }
 
-function SelectTableWithStore (props) {
+function PopoverWithStore (props) {
 	const { switchTwClass } = useSwitchTwClassStore(
     (state) => state,
   )
+
+	const { rows = [] } = props
+	const { twClass = '' } = rows.find(item => item.defaultSelected)
+	useEffect(() => {
+		switchTwClass({
+			switchedTwClass: twClass
+		})
+	}, [])
+
 	return (
-		<SelectTable {...props} onSelect={value => switchTwClass({
-			switchedTwClass: value
-		})}></SelectTable>
+		<Popover>
+			<PopoverTrigger>
+				<Palette />
+			</PopoverTrigger>
+			<PopoverContent className="w-auto" align="end">
+				<SelectTable {...props} onSelect={value => switchTwClass({
+					switchedTwClass: value
+				})} defaultSelectValue={twClass}></SelectTable>
+			</PopoverContent>
+		</Popover>
 	)
 }

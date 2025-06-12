@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Table,
   TableBody,
@@ -13,11 +13,17 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 
-export function SelectTable({ headers = [], rows = [], onSelect }: {
+export function SelectTable({ headers = [], rows = [], onSelect, defaultSelectValue = '' }: {
 	headers: object[],
 	rows: object[]
 } = {}) {
 	const [ radioValue, setRadioValue ]  = useState('')
+
+	useEffect(() => {
+		if (defaultSelectValue) {
+			setRadioValue(defaultSelectValue)
+		}
+	}, [])
 
   return (
     <Table>
@@ -44,17 +50,18 @@ export function SelectTable({ headers = [], rows = [], onSelect }: {
 										<div className="flex justify-start items-center">
 											{header.selectable ? (
 												<>
-													<RadioGroup className="mr-2" value={radioValue} onValueChange={(value) => {
+													<RadioGroup className="flex justify-start items-center mr-2" value={radioValue} onValueChange={(value) => {
 														setRadioValue(value)
 														if (onSelect) {
 															onSelect(value)
 														}
 													}}>
 														<RadioGroupItem
+															id={row[header.prop]}
 															value={row[header.prop]}>
 														</RadioGroupItem>
+														<Label htmlFor={row[header.prop]} className="text-xs/6">{row[header.prop]}</Label>
 													</RadioGroup>
-													<Label htmlFor={row[header.prop]} className="text-xs/6">{row[header.prop]}</Label>
 												</>
 											) : row[header.prop] }
 										</div>
