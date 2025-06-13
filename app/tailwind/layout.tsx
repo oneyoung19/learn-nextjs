@@ -23,6 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 import { routeEnums } from './enum'
 import { cn, findMatchedRoutes } from '@/lib/utils'
@@ -105,9 +106,11 @@ function PopoverWithStore (props) {
 				<Palette />
 			</PopoverTrigger>
 			<PopoverContent className="w-auto" align="end">
-				<SelectTable {...props} onSelect={value => switchTwClass({
-					switchedTwClass: value
-				})} defaultSelectValue={twClass}></SelectTable>
+				<ScrollArea className="h-[calc(100vh_-_15rem)]">
+					<SelectTable {...props} onSelect={value => switchTwClass({
+						switchedTwClass: value
+					})} defaultSelectValue={twClass}></SelectTable>
+				</ScrollArea>
 			</PopoverContent>
 		</Popover>
 	)

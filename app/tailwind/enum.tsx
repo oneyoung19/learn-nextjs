@@ -282,14 +282,120 @@ export const routeEnums = [
 			},
 			{
 				title: 'display',
-				url: 'https://tailwindcss.com/docs/display',
+				url: '/tailwind/1.layout/display',
 				tableMap: {
 					headers,
 					rows: [
-
+						{
+							twClass: 'inline',
+							twStyle: 'display: inline;'
+						},
+						{
+							twClass: 'block',
+							twStyle: 'display: block;'
+						},
+						{
+							twClass: 'inline-block',
+							twStyle: 'display: inline-block;'
+						},
+						{
+							twClass: 'flex-root',
+							twStyle: 'display: flex-root;'
+						},
+						{
+							twClass: 'flex',
+							twStyle: 'display: flex;'
+						},
+						{
+							twClass: 'inline-flex',
+							twStyle: 'display: inline-flex;'
+						},
+						{
+							twClass: 'grid',
+							twStyle: 'display: grid;'
+						},
+						{
+							twClass: 'inline-grid',
+							twStyle: 'display: inline-grid;'
+						},
+						{
+							twClass: 'contents',
+							twStyle: 'display: contents;'
+						},
+						{
+							twClass: 'table',
+							twStyle: 'display: table;'
+						},
+						{
+							twClass: 'inline-table',
+							twStyle: 'display: inline-table;'
+						},
+						{
+							twClass: 'table-caption',
+							twStyle: 'display: table-caption;'
+						},
+						{
+							twClass: 'table-cell',
+							twStyle: 'display: table-cell;'
+						},
+						{
+							twClass: 'table-column',
+							twStyle: 'display: table-column;'
+						},
+						{
+							twClass: 'table-column-group',
+							twStyle: 'display: table-column-group;'
+						},
+						{
+							twClass: 'table-footer-group',
+							twStyle: 'display: table-footer-group;'
+						},
+						{
+							twClass: 'table-header-group',
+							twStyle: 'display: table-header-group;'
+						},
+						{
+							twClass: 'table-row-group',
+							twStyle: 'display: table-row-group;'
+						},
+						{
+							twClass: 'table-row',
+							twStyle: 'display: table-row;'
+						},
+						{
+							twClass: 'list-item',
+							twStyle: 'display: list-item;'
+						},
+						{
+							twClass: 'hidden',
+							twStyle: 'display: none;'
+						},
+						{
+							twClass: 'sr-only',
+							twStyle: `position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;`
+						},
+						{
+							twClass: 'not-sr-only',
+							twStyle: `position: static;
+width: auto;
+height: auto;
+padding: 0;
+margin: 0;
+overflow: visible;
+clip: auto;
+white-space: normal;`
+						}
 					]
 				}
 			}
-		],
+		]
 	}
 ]
