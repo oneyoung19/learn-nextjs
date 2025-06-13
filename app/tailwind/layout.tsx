@@ -107,7 +107,7 @@ function PopoverWithStore (props) {
 				<Palette />
 			</PopoverTrigger>
 			<PopoverContent className="w-auto" align="end">
-				<ScrollArea className="h-[calc(100vh_-_15rem)] w-[calc(50vw_-_2rem)]">
+				<ScrollArea className="max-h-[calc(100vh_-_15rem)] w-[calc(50vw_-_2rem)]">
 					<SelectTable {...props} onSelect={value => switchTwClass({
 						switchedTwClass: value
 					})} defaultSelectValue={twClass}></SelectTable>

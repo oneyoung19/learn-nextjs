@@ -474,6 +474,149 @@ white-space: normal;`
 						}
 					]
 				}
+			},
+			{
+				title: 'object-fit',
+				url: '/tailwind/1.layout/object-fit',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'object-contain',
+							twStyle: 'object-fit: contain;'
+						},
+						{
+							twClass: 'object-cover',
+							twStyle: 'object-fit: cover;'
+						},
+						{
+							twClass: 'object-fill',
+							twStyle: 'object-fit: fill;'
+						},
+						{
+							twClass: 'object-none',
+							twStyle: 'object-fit: none;'
+						},
+						{
+							twClass: 'object-scale-down',
+							twStyle: 'object-fit: scale-down;'
+						}
+					]
+				}
+			},
+			{
+				title: 'object-position',
+				url: '/tailwind/1.layout/object-position',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'object-top-left',
+							twStyle: 'object-position: top left;'
+						},
+						{
+							twClass: 'object-top',
+							twStyle: 'object-position: top;'
+						},
+						{
+							twClass: 'object-top-right',
+							twStyle: 'object-position: top right;'
+						},
+						{
+							twClass: 'object-left',
+							twStyle: 'object-position: left;'
+						},
+						{
+							twClass: 'object-center',
+							twStyle: 'object-position: center;'
+						},
+						{
+							twClass: 'object-right',
+							twStyle: 'object-position: right;'
+						},
+						{
+							twClass: 'object-bottom-left',
+							twStyle: 'object-position: bottom left;'
+						},
+						{
+							twClass: 'object-bottom',
+							twStyle: 'object-position: bottom;'
+						},
+						{
+							twClass: 'object-bottom-right',
+							twStyle: 'object-position: bottom right;'
+						}
+					]
+				}
+			},
+			{
+				title: 'overflow',
+				url: '/tailwind/1.layout/overflow',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'overflow-auto',
+							twStyle: 'overflow: auto;'
+						},
+						{
+							twClass: 'overflow-hidden',
+							twStyle: 'overflow: hidden;'
+						},
+						{
+							twClass: 'overflow-clip',
+							twStyle: 'overflow: clip;'
+						},
+						{
+							twClass: 'overflow-visible',
+							twStyle: 'overflow: visible;'
+						},
+						{
+							twClass: 'overflow-scroll',
+							twStyle: 'overflow: scroll;'
+						},
+						{
+							twClass: 'overflow-x-auto',
+							twStyle: 'overflow-x: auto;'
+						},
+						{
+							twClass: 'overflow-y-auto',
+							twStyle: 'overflow-y: auto;'
+						},
+						{
+							twClass: 'overflow-x-hidden',
+							twStyle: 'overflow-x: hidden;'
+						},
+						{
+							twClass: 'overflow-y-hidden',
+							twStyle: 'overflow-y: hidden;'
+						},
+						{
+							twClass: 'overflow-x-clip',
+							twStyle: 'overflow-x: clip;'
+						},
+						{
+							twClass: 'overflow-y-clip',
+							twStyle: 'overflow-y: clip;'
+						},
+						{
+							twClass: 'overflow-x-visible',
+							twStyle: 'overflow-x: visible;'
+						},
+						{
+							twClass: 'overflow-y-visible',
+							twStyle: 'overflow-y: visible;'
+						},
+						{
+							twClass: 'overflow-x-scroll',
+							twStyle: 'overflow-x: scroll;'
+						},
+						{
+							twClass: 'overflow-y-scroll',
+							twStyle: 'overflow-y: scroll;'
+						}
+					]
+				}
 			}
 		]
 	}

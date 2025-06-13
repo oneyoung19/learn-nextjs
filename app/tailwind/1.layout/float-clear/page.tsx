@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import SnowMountain from '@/assets/images/snow-mountains.jpg'
-import GreenMountain from '@/assets/images/green-mountains.jpg'
+import SnowMountain from '@/assets/images/snow-mountains.jpeg'
+import GreenMountain from '@/assets/images/green-mountains.jpeg'
 import Words from '@/components/Words'
 
 export default function FloatClear () {
