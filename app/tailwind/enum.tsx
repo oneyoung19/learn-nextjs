@@ -395,6 +395,85 @@ white-space: normal;`
 						}
 					]
 				}
+			},
+			{
+				title: 'float',
+				url: '/tailwind/1.layout/float',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'float-right',
+							twStyle: 'float: right;'
+						},
+						{
+							twClass: 'float-left',
+							twStyle: 'float: left;'
+						},
+						{
+							twClass: 'float-start',
+							twStyle: 'float: inline-start;'
+						},
+						{
+							twClass: 'float-end',
+							twStyle: 'float: inline-end;'
+						},
+						{
+							twClass: 'float-none',
+							twStyle: 'float: none;'
+						}
+					]
+				}
+			},
+			{
+				title: 'clear',
+				url: '/tailwind/1.layout/float-clear',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'clear-left',
+							twStyle: 'clear: left;'
+						},
+						{
+							twClass: 'clear-right',
+							twStyle: 'clear: right;'
+						},
+						{
+							twClass: 'clear-both',
+							twStyle: 'clear: both;'
+						},
+						{
+							twClass: 'clear-start',
+							twStyle: 'clear: inline-start;'
+						},
+						{
+							twClass: 'clear-end',
+							twStyle: 'clear: inline-end;'
+						},
+						{
+							twClass: 'clear-none',
+							twStyle: 'clear: none;'
+						}
+					]
+				}
+			},
+			{
+				title: 'isolation',
+				url: '/tailwind/1.layout/isolation',
+				tableMap: {
+					headers,
+					rows: [
+						{
+							twClass: 'isolate',
+							twStyle: 'isolation: isolate;'
+						},
+						{
+							twClass: 'isolation-auto',
+							twStyle: 'isolation: auto;'
+						}
+					]
+				}
 			}
 		]
 	}
