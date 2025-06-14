@@ -18,7 +18,11 @@ const routes = [
   {
     name: 'Tailwind',
     href: '/tailwind'
-  }
+  },
+	{
+		name: 'Data fetching',
+		href: '/data-fetching'
+	}
 ]
 
 export default function Home() {

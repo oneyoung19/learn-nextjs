@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import '@ant-design/v5-patch-for-react-19'
+import Providers from './providers'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,7 +29,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <Providers>
+          <AntdRegistry>{children}</AntdRegistry>
+        </Providers>
       </body>
     </html>
   )
